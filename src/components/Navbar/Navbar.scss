@@ -1,0 +1,94 @@
+@import "../../styles/commonStyles/ColorVariables";
+
+.navbar{
+  position: fixed;
+  z-index: 100;
+  background-color: $black;
+
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid $grey;
+  &__logo_list{
+    display: flex;
+    align-items: center;
+    width: 300px;
+  }
+
+  &__container{
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1200px;
+
+    height: 100%;
+  }
+  &__logo{
+    width: 40px;
+    height: 40px;
+  }
+
+  &__list{
+    margin-left: 7%;
+    display: flex;
+    gap: 20px;
+  }
+  &__item{
+    & a{
+      color: white;
+      & div{
+        width: 100%;
+        margin-top: 2px;
+        height: 1px;
+        background-color: white;
+      }
+    }
+  }
+
+  &__magnifier{
+    user-select: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+}
+
+.search_bar{
+  display: flex;
+  background-color: white;
+  height: 35px;
+  border-radius: 10px;
+  &__input{
+    padding: 10px 15px;
+    max-width: 150px;
+    border-radius: 10px;
+    color: grey;
+  }
+  &__close{
+    width: 35px;
+    border-left: grey 1px solid;
+    cursor: pointer;
+  }
+  &__line{
+    background-color: $black;
+    width: 2px;
+    height: 25px;
+  }
+  &__line1{
+    transform: rotate(45deg) translate(15px, -6px);
+  }
+  &__line2{
+    transform: rotate(-45deg) translate(24px, -3px);
+  }
+}
+
+.logo{
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  &__image{
+
+  }
+}
