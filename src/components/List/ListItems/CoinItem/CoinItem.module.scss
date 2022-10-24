@@ -1,0 +1,54 @@
+@import "/src/styles/commonStyles/ColorVariables";
+
+.coin_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 7px;
+  border-top: 1px solid $grey;
+
+  height: 50px;
+  &__image{
+    max-width: 25px;
+    max-height: 25px;
+  }
+  &__name{
+    max-width: 100px;
+    margin: 0 3px;
+    font-size: 10px;
+    text-align: center;
+  }
+  &__price_green{
+    font-size: 10px;
+    color: green;
+  }
+
+  &__price_red{
+    font-size: 10px;
+    color: red;
+  }
+
+  &__price{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__arrow_up{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 5px solid green;
+  }
+  &__arrow_down{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-top: 5px solid red;
+  }
+}
