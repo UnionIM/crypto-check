@@ -8,4 +8,26 @@ export default class CryptoController {
             throw e;
         }
     }
+
+    static async getAllCrypto() {
+        try {
+            return await CryptoService.getAllCrypto();
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    static async getMarketInfo(
+        vsCurrency: string,
+        priceChangePercentage: string
+    ) {
+        try {
+            return await CryptoService.getMarketInfo(
+                vsCurrency,
+                priceChangePercentage
+            );
+        } catch (e) {
+            throw e;
+        }
+    }
 }
