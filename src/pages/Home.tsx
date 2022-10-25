@@ -10,10 +10,10 @@ const Home = () => {
     const [lowestCryptoList, setLowestCryptoList] = useState<ICoin[]>([]);
     const [highestCryptoList, setHighestCryptoList] = useState<ICoin[]>([]);
 
-    const { data } = useDataFromPromise(CryptoController.getMarketInfo, [
-        'usd',
-        '24h',
-    ]);
+    const { data, isLoading } = useDataFromPromise(
+        CryptoController.getMarketInfo,
+        ['usd', '24h']
+    );
 
     useEffect(() => {
         if (data) {
@@ -38,10 +38,13 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="home__content">
-                    {data === null ? (
+                    {isLoading ? (
                         <div>Loading...</div>
                     ) : (
                         <div>
+                            <h1 className="home__list_header">
+                                Best and worst crypto
+                            </h1>
                             <div className="home__best_worst_list">
                                 <List
                                     items={highestCryptoList}
@@ -51,6 +54,7 @@ const Home = () => {
                                             key={crypto.id}
                                         />
                                     )}
+                                    equalWidth={true}
                                 />
                                 <List
                                     items={lowestCryptoList}
@@ -60,6 +64,7 @@ const Home = () => {
                                             key={crypto.id}
                                         />
                                     )}
+                                    equalWidth={true}
                                 />
                             </div>
                         </div>

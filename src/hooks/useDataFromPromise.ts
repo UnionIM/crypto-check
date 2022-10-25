@@ -6,12 +6,12 @@ export default function useDataFromPromise<T>(
 ) {
     const [data, setData] = useState<{ data: null | T; isLoading: boolean }>({
         data: null,
-        isLoading: false,
+        isLoading: true,
     });
 
     useEffect(() => {
         promise.apply(null, params).then((value) => {
-            setData({ data: value, isLoading: true });
+            setData({ data: value, isLoading: false });
         });
     }, []);
 
