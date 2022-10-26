@@ -1,0 +1,37 @@
+@import "src/styles/commonStyles/ColorVariables";
+
+.market_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 7px;
+  border-top: 1px solid $grey;
+
+  height: 50px;
+  &__header{
+    background-color: $lightGrey;
+  }
+  &__name{
+    display: inline-block;
+    width: 100px;
+  }
+  &__trust_score{
+    padding: 2px 5px;
+    border-radius: 5px;
+    width: 82px;
+    text-align: center;
+  }
+  &__target{
+    width: 55px;
+    text-align: center;
+  }
+  &__price{
+    width: 100px;
+    text-align: center;
+  }
+  &__date{
+    width: 130px;
+    text-align: right;
+  }
+}
