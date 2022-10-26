@@ -1,0 +1,10 @@
+@import "src/styles/commonStyles/Text";
+
+.price{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 0 3px;
+  width: 80px;
+}
