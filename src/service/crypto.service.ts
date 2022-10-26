@@ -1,9 +1,9 @@
 import api from '../API/api';
-import { ICoin } from '../models/crypto';
+import { ICoin, ICoinSingle } from '../models/crypto';
 
 export default class CryptoService {
     static async getCryptoById(id: string) {
-        return (await api.get<ICoin>(`/coins/${id}`)).data;
+        return (await api.get<ICoinSingle>(`/coins/${id}`)).data;
     }
 
     static async getAllCrypto() {
