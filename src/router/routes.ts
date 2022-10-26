@@ -1,7 +1,7 @@
 import Home from '../pages/Home';
-import Coin from '../pages/Coin';
+import CoinPage from '../pages/CoinPage';
 
 export const routes = [
     { path: '', component: Home },
-    { path: '/coin', component: Coin },
+    { path: '/coins/:coinId/:path', component: CoinPage },
 ];
