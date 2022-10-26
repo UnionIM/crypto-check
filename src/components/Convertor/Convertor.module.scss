@@ -1,0 +1,28 @@
+@import "/src/styles/commonStyles/ColorVariables";
+@import "/src/styles/commonStyles/Text";
+
+.convertor{
+  padding: 30px 20px;
+  border: 1px solid $grey;
+  text-align: center;
+  & h1{
+    margin-bottom: 20px;
+  }
+  &__wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+  &__input{
+    padding: 5px 3px;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    width: 45%;
+  }
+  &__output{
+    text-align: left;
+    padding: 5px 3px;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    width: 45%;
+  }
+}
