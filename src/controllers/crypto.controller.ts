@@ -11,6 +11,36 @@ export default class CryptoController {
         }
     }
 
+    static async getAllCrypto() {
+        try {
+            return await CryptoService.getAllCrypto();
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    static async searchForCrypto(searchValue: string) {
+        try {
+            return await CryptoService.searchForCrypto(searchValue);
+        } catch (e) {
+            throw e;
+        }
+    }
+
+    static async getMarketInfo(
+        vsCurrency: string,
+        priceChangePercentage: string
+    ) {
+        try {
+            return await CryptoService.getMarketInfo(
+                vsCurrency,
+                priceChangePercentage
+            );
+        } catch (e) {
+            throw e;
+        }
+    }
+
     static coinNormalizer(data: ICoinSingle) {
         try {
             return [
@@ -70,28 +100,6 @@ export default class CryptoController {
                         : null,
                 },
             ];
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    static async getAllCrypto() {
-        try {
-            return await CryptoService.getAllCrypto();
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    static async getMarketInfo(
-        vsCurrency: string,
-        priceChangePercentage: string
-    ) {
-        try {
-            return await CryptoService.getMarketInfo(
-                vsCurrency,
-                priceChangePercentage
-            );
         } catch (e) {
             throw e;
         }
