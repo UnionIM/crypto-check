@@ -25,14 +25,6 @@ export interface IPrice {
     [key: string]: number;
 }
 
-/*export interface IPrice {
-    usd: number;
-    btc: number;
-    uah: number;
-    eur: number;
-    eth: number;
-}*/
-
 export interface ICoinMarketData {
     current_price: IPrice;
     market_cap: IPrice;
@@ -45,6 +37,7 @@ export interface ICoinMarketData {
 }
 
 export interface ITickers {
+    coin_id: string;
     converted_last: IPrice;
     last_fetch_at: string;
     trust_score: string;
@@ -67,4 +60,17 @@ export interface ICoinSingle {
     market_cap_rank: number;
     public_interest_score: number;
     tickers: ITickers[];
+}
+
+export interface ISearch {
+    categories: [];
+    coins: [ISearchedCoin];
+    exchanges: [];
+}
+
+export interface ISearchedCoin {
+    id: string;
+    name: string;
+    symbol: string;
+    thumb: string;
 }
