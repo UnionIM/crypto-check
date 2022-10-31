@@ -1,0 +1,9 @@
+.light_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  &__coin_name{
+    color: white;
+  }
+}
