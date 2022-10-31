@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 
 export default function useDataFromPromise<T>(
     promise: (...args: any) => Promise<T>,
-    params: any[]
+    params: any[],
+    deps?: any
 ) {
     const [data, setData] = useState<{ data: null | T; isLoading: boolean }>({
         data: null,
@@ -13,7 +14,7 @@ export default function useDataFromPromise<T>(
         promise.apply(null, params).then((value) => {
             setData({ data: value, isLoading: false });
         });
-    }, []);
+    }, [deps || null]);
 
     return data;
 }
