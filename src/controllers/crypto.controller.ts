@@ -11,9 +11,9 @@ export default class CryptoController {
         }
     }
 
-    static async getAllCrypto() {
+    static async getAllCrypto(page: string) {
         try {
-            return await CryptoService.getAllCrypto();
+            return await CryptoService.getAllCrypto(page);
         } catch (e) {
             throw e;
         }
@@ -57,7 +57,7 @@ export default class CryptoController {
                         data.market_data.current_price &&
                         data.market_data.max_supply
                             ? pricePrettier(
-                                  data.market_data.max_supply *
+                                  parseFloat(data.market_data.total_supply) *
                                       data.market_data.current_price.usd
                               )
                             : null,

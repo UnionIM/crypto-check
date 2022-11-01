@@ -1,13 +1,13 @@
 import api from '../API/api';
-import { ICoin, ICoinSingle, ISearch } from '../models/crypto';
+import { ICoin, ICoinSingle, IExtendedCoin, ISearch } from '../models/crypto';
 
 export default class CryptoService {
     static async getCryptoById(id: string) {
         return (await api.get<ICoinSingle>(`/coins/${id}`)).data;
     }
 
-    static async getAllCrypto() {
-        return (await api.get<ICoin>('/coins')).data;
+    static async getAllCrypto(page: string = '1') {
+        return (await api.get<IExtendedCoin[]>(`/coins?page=${page}`)).data;
     }
 
     static async searchForCrypto(searchValue: string) {
