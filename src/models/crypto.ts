@@ -15,6 +15,14 @@ export interface ICoin {
     description: ICoinDescription;
 }
 
+export interface IExtendedCoin {
+    id: string;
+    name: string;
+    image: ICoinImage;
+    symbol: string;
+    market_data: ICoinMarketData;
+}
+
 export interface ICoinImage {
     large: string;
     small: string;
@@ -30,10 +38,13 @@ export interface ICoinMarketData {
     market_cap: IPrice;
     price_change_24h: number;
     price_change_percentage_24h: number;
+    price_change_percentage_7d: number;
+    price_change_percentage_30d: number;
     market_cap_change_24h: number;
     market_cap_change_percentage_24h: number;
     circulating_supply: number;
     max_supply: number;
+    total_supply: string;
 }
 
 export interface ITickers {
