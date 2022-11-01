@@ -16,6 +16,7 @@ const CoinPage = () => {
 
     const { data, isLoading } = useDataFromPromise(
         CryptoController.getCoinById,
+        [coinId],
         [coinId]
     );
 

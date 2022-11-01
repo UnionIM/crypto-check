@@ -1,8 +1,11 @@
+@import "/src/styles/commonStyles/ColorVariables";
+
 .light_item{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  background-color: $black;
   &__coin_name{
     color: white;
   }

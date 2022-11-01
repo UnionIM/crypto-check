@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { IPrice } from '../../models/crypto';
 import cls from './Convertor.module.scss';
 import TriangleArrow from '../UI/TriangleArrow/TriangleArrow';
@@ -11,12 +11,12 @@ interface ConvertorProps {
 }
 
 const Convertor: FC<ConvertorProps> = ({ price, symbol }) => {
-    const [amount, setAmount] = useState<number>(1);
+    const [amount, setAmount] = useState<string>('1');
     const [selectedCurrency, setSelectedCurrency] = useState<string>('usd');
     const [showDropDown, setShowDropDown] = useState<boolean>(false);
     const [isCoinToCurr, setIsCoinToCurr] = useState<boolean>(true);
 
-    const ref = React.useRef<HTMLButtonElement>(null);
+    const ref = useRef<HTMLButtonElement>(null);
 
     useOutsideClick(() => {
         setShowDropDown(false);
@@ -44,9 +44,10 @@ const Convertor: FC<ConvertorProps> = ({ price, symbol }) => {
             </button>
             <div className={cls.convertor__wrapper}>
                 <input
-                    onChange={(e) => setAmount(+e.target.value)}
+                    onChange={(e) => setAmount(e.target.value)}
                     type="number"
                     className={cls.convertor__input}
+                    value={amount}
                 />
                 <div className={cls.convertor__dropdown}>
                     <button
@@ -81,8 +82,8 @@ const Convertor: FC<ConvertorProps> = ({ price, symbol }) => {
                 </div>
                 <div className={cls.convertor__output}>
                     {isCoinToCurr
-                        ? amount * price[selectedCurrency as keyof IPrice]
-                        : amount / price[selectedCurrency as keyof IPrice]}
+                        ? +amount * price[selectedCurrency as keyof IPrice]
+                        : +amount / price[selectedCurrency as keyof IPrice]}
                 </div>
             </div>
         </div>
