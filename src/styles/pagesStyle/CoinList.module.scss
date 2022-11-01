@@ -1,0 +1,16 @@
+@import "./src/styles/commonStyles/ColorVariables";
+@import "./src/styles/commonStyles/Text";
+@import "./src/components/List/ListItems/ExtendedCoinItem/ExtendedCoinItem.module";
+
+.coin_list{
+  padding: 60px 0 0 0;
+
+}
+
+.coin_item{
+  text-align: center;
+  background-color: $lightGrey;
+  &__price{
+    text-align: left;
+  }
+}
