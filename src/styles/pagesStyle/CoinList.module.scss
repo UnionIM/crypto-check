@@ -1,16 +1,28 @@
 @import "./src/styles/commonStyles/ColorVariables";
 @import "./src/styles/commonStyles/Text";
-@import "./src/components/List/ListItems/ExtendedCoinItem/ExtendedCoinItem.module";
 
 .coin_list{
   padding: 60px 0 0 0;
-
+  &__container{
+    margin: 20px auto 0;
+    max-width: 1000px;
+  }
+  &__header_item{
+    background-color: $lightGrey;
+  }
 }
 
 .coin_item{
-  text-align: center;
-  background-color: $lightGrey;
-  &__price{
+  /*& > button:first-child{
     text-align: left;
+    width: 150px;
+  }*/
+}
+
+@media(max-width: 1000px){
+  .coin_item{
+    & > button:first-child{
+      width: auto;
+    }
   }
 }
