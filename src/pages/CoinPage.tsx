@@ -6,13 +6,19 @@ import cls from '../styles/pagesStyle/CoinPage.module.scss';
 import PriceChange from '../components/UI/PriceChange/PriceChange';
 import List from '../components/List/List';
 import NameValueItem from '../components/List/ListItems/NameValueItem/NameValueItem';
-import { INameValue } from '../models/crypto';
+import { IFlatTickers, INameValue } from '../models/crypto';
 import MarketItem from '../components/List/ListItems/MarketItem/MarketItem';
 import Convertor from '../components/Convertor/Convertor';
+import ListHeader from '../components/List/ListHeader/ListHeader';
 
 const CoinPage = () => {
     const [list, setList] = useState<INameValue[]>([]);
+    const [market, setMarket] = useState<IFlatTickers[]>([]);
     const { coinId, path } = useParams();
+    const [sort, setSort] = useState<{ column: string; isDesc: boolean }>({
+        column: 'market_cap',
+        isDesc: true,
+    });
 
     const { data, isLoading } = useDataFromPromise(
         CryptoController.getCoinById,
@@ -22,9 +28,48 @@ const CoinPage = () => {
 
     useEffect(() => {
         if (data) {
+            const temp: IFlatTickers[] = [];
             setList(CryptoController.coinNormalizer(data));
+            data.tickers.map((el) => {
+                temp.push(CryptoController.marketNormalizer(el));
+            });
+            setMarket(temp);
         }
     }, [data]);
+
+    useEffect(() => {
+        setMarket(sortArr(market, sort.column, sort.isDesc));
+    }, [sort]);
+
+    const sortArr = (arr: any[], property: string, isDesc: boolean) => {
+        return [...arr].sort((a, b) => {
+            if (typeof a[property] === 'string') {
+                return (
+                    (a[property].toLowerCase() < b[property].toLowerCase()
+                        ? -1
+                        : a[property].toLowerCase() > b[property].toLowerCase()
+                        ? 1
+                        : 0) * (isDesc ? -1 : 1)
+                );
+            } else {
+                return (
+                    (a[property] < b[property]
+                        ? -1
+                        : a[property] > b[property]
+                        ? 1
+                        : 0) * (isDesc ? -1 : 1)
+                );
+            }
+        });
+    };
+
+    const listHeaders = [
+        { title: 'Market', sort: 'market', width: 100 },
+        { title: 'Target', sort: 'target', width: 55 },
+        { title: 'Trust score', sort: 'trust_score', width: 100 },
+        { title: 'Price', sort: 'converted_last', width: 80 },
+        { title: 'Date UTC0', sort: 'last_fetch_at', width: 126 },
+    ];
 
     if (!data) {
         return <div>No data</div>;
@@ -84,6 +129,12 @@ const CoinPage = () => {
                             )}
                         />
                     </div>
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: data.description.en,
+                        }}
+                        className={cls.coin_page__description}
+                    />
                     <div>
                         <nav className={cls.coin_page__list_container}>
                             <ul className={cls.coin_page__list}>
@@ -134,40 +185,18 @@ const CoinPage = () => {
                                 <div
                                     className={cls.coin_page__market_container}
                                 >
-                                    <div
-                                        className={[
-                                            cls.market_item,
-                                            cls.market_item__header,
-                                        ].join(' ')}
-                                    >
-                                        <span className={cls.market_item__name}>
-                                            Market
-                                        </span>
-                                        <span
-                                            className={cls.market_item__target}
-                                        >
-                                            Target
-                                        </span>
-                                        <span
-                                            className={
-                                                cls.market_item__trust_score
-                                            }
-                                        >
-                                            Trust score
-                                        </span>
-                                        <span
-                                            className={cls.market_item__price}
-                                        >
-                                            Price
-                                        </span>
-                                        <span className={cls.market_item__date}>
-                                            Date UTC0
-                                        </span>
-                                    </div>
+                                    <ListHeader
+                                        listHeaders={listHeaders}
+                                        setSort={setSort}
+                                        key={listHeaders[0].sort}
+                                    />
                                     <List
-                                        items={data.tickers}
+                                        items={market}
                                         renderItem={(market) => (
-                                            <MarketItem market={market} />
+                                            <MarketItem
+                                                key={Math.random()}
+                                                market={market}
+                                            />
                                         )}
                                     />
                                 </div>
