@@ -1,0 +1,26 @@
+@import "./src/styles/commonStyles/ColorVariables";
+
+.pagination{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  &__container{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
+    padding: 0 0 50px;
+  }
+}
+.active{
+  padding: 3px 5px;
+  border: 1px solid $black;
+  background: $lightGrey;
+  cursor: pointer;
+}
+.item{
+  padding: 3px 5px;
+  border: 1px solid $black;
+  background: white;
+  cursor: pointer;
+  text-align: center;
+}
