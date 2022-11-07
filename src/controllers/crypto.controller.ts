@@ -1,5 +1,5 @@
 import CryptoService from '../service/crypto.service';
-import { ICoinSingle } from '../models/crypto';
+import { ICoinSingle, IExtendedCoin, ITickers } from '../models/crypto';
 import { pricePrettier } from '../components/Utils/Utils';
 
 export default class CryptoController {
@@ -103,5 +103,45 @@ export default class CryptoController {
         } catch (e) {
             throw e;
         }
+    }
+
+    static extendedCoinNormalizer(data: IExtendedCoin) {
+        return {
+            id: data.id,
+            name: data.name,
+            symbol: data.symbol,
+            image: data.image.thumb,
+            price: data.market_data.current_price.usd,
+            price24h: data.market_data.price_change_percentage_24h,
+            price7d: data.market_data.price_change_percentage_7d,
+            price30d: data.market_data.price_change_percentage_30d,
+            market_cap: data.market_data.market_cap.usd,
+            market_cap_24h: data.market_data.market_cap_change_percentage_24h,
+            fdv:
+                parseFloat(data.market_data.total_supply) &&
+                data.market_data.current_price.usd
+                    ? parseFloat(data.market_data.total_supply) *
+                      data.market_data.current_price.usd
+                    : -1,
+            mc_fdv:
+                data.market_data.market_cap.usd &&
+                parseFloat(data.market_data.total_supply)
+                    ? data.market_data.market_cap.usd /
+                      (parseFloat(data.market_data.total_supply) *
+                          data.market_data.current_price.usd)
+                    : -1,
+        };
+    }
+
+    static marketNormalizer(data: ITickers) {
+        return {
+            coin_id: data.coin_id,
+            converted_last: data.converted_last.usd,
+            last_fetch_at: data.last_fetch_at,
+            trust_score: data.trust_score,
+            target: data.target,
+            trade_url: data.trade_url,
+            market: data.market.name,
+        };
     }
 }

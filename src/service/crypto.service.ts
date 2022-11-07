@@ -7,7 +7,7 @@ export default class CryptoService {
     }
 
     static async getAllCrypto(page: string = '1') {
-        return (await api.get<IExtendedCoin[]>(`/coins?page=${page}`)).data;
+        return await api.get<IExtendedCoin[]>(`/coins?page=${page}`);
     }
 
     static async searchForCrypto(searchValue: string) {

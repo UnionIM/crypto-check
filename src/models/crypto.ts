@@ -23,6 +23,21 @@ export interface IExtendedCoin {
     market_data: ICoinMarketData;
 }
 
+export interface IFlatExtendedCoin {
+    id: string;
+    name: string;
+    symbol: string;
+    image: string;
+    price: number;
+    price24h: number;
+    price7d: number;
+    price30d: number;
+    market_cap: number;
+    market_cap_24h: number;
+    fdv: number;
+    mc_fdv: number;
+}
+
 export interface ICoinImage {
     large: string;
     small: string;
@@ -55,6 +70,16 @@ export interface ITickers {
     target: string;
     trade_url: string;
     market: { name: string };
+}
+
+export interface IFlatTickers {
+    coin_id: string;
+    converted_last: number;
+    last_fetch_at: string;
+    trust_score: string;
+    target: string;
+    trade_url: string;
+    market: string;
 }
 
 export interface ICoinSingle {
