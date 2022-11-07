@@ -18,14 +18,20 @@ const PriceChange: FC<PriceChangeProps> = ({
             {priceValue > 0 ? (
                 <span className={[cls.price_green, cls.price].join(' ')}>
                     <span>
-                        {parseFloat(priceValue.toFixed(digits)) + specialSymbol}
+                        {priceValue
+                            ? parseFloat(priceValue.toFixed(digits)) +
+                              specialSymbol
+                            : 'N/A'}
                     </span>
                     <TriangleArrow isUp={true} />
                 </span>
             ) : (
                 <span className={[cls.price_red, cls.price].join(' ')}>
                     <span>
-                        {parseFloat(priceValue.toFixed(digits)) + specialSymbol}
+                        {priceValue
+                            ? parseFloat(priceValue.toFixed(digits)) +
+                              specialSymbol
+                            : 'N/A'}
                     </span>
 
                     <TriangleArrow isUp={false} />

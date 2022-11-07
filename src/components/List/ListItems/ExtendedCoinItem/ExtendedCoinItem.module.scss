@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid $grey;
+
   padding: 5px 10px;
   &__name_info{
     display: flex;
@@ -35,5 +36,14 @@
   }
   &__percentage{
     width: 80px;
+  }
+}
+
+@media (max-width: 1000px){
+  .coin_item{
+    &__name_info{
+      display: block;
+      width: 100px;
+    }
   }
 }

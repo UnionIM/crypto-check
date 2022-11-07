@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
 import './MarketItem.module.scss';
-import { ITickers } from '../../../../models/crypto';
+import { IFlatTickers } from '../../../../models/crypto';
 import cls from './MarketItem.module.scss';
 
 interface MarketItemProps {
-    market: ITickers;
+    market: IFlatTickers;
 }
 
 const MarketItem: FC<MarketItemProps> = ({ market }) => {
     return (
         <div className={cls.market_item}>
             <a className={cls.market_item__name} href={market.trade_url}>
-                {market.market.name}
+                {market.market}
             </a>
             <span className={cls.market_item__target}>
                 {market.target.length > 7 ? 'No data' : market.target}
@@ -23,7 +23,7 @@ const MarketItem: FC<MarketItemProps> = ({ market }) => {
                 {market.trust_score || 'No data'}
             </span>
             <span className={cls.market_item__price}>
-                {market.converted_last.usd.toString().slice(0, 8)} USD
+                {market.converted_last.toString().slice(0, 8)} USD
             </span>
             <span className={cls.market_item__date}>
                 {market.last_fetch_at.slice(0, 19).split('T').join(' ')}
