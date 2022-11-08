@@ -8,6 +8,7 @@ import ExtendedCoinItem from '../components/List/ListItems/ExtendedCoinItem/Exte
 import { IFlatExtendedCoin } from '../models/crypto';
 import ListHeader from '../components/List/ListHeader/ListHeader';
 import Pagination from '../components/Pagination/Pagination';
+import { sortArr } from '../components/Utils/Utils';
 
 const CoinList = () => {
     const { page } = useParams();
@@ -53,18 +54,6 @@ const CoinList = () => {
         setCoins(sortArr(coins, sort.column, sort.isDesc));
     }, [sort]);
 
-    const sortArr = (arr: any[], property: string, isDesc: boolean) => {
-        return [...arr].sort((a, b) => {
-            return (
-                (a[property] < b[property]
-                    ? -1
-                    : a[property] > b[property]
-                    ? 1
-                    : 0) * (isDesc ? -1 : 1)
-            );
-        });
-    };
-
     if (!data) {
         return <div>no data</div>;
     }
@@ -79,6 +68,7 @@ const CoinList = () => {
                         <ListHeader
                             listHeaders={listHeaders}
                             setSort={setSort}
+                            sort={sort}
                         />
                     </div>
                     <List

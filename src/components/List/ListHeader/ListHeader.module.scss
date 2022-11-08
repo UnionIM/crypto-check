@@ -6,18 +6,23 @@
   justify-content: space-between;
   background-color: $lightGrey;
   padding: 5px 10px;
-  /*text-align: center;*/
-  /*& button:first-child{
+  text-align: center;
+  & button:first-child{
     text-align: left;
-  }*/
-  /*& button:last-child{
+  }
+  & button:last-child{
     text-align: right;
-  }*/
+  }
   &__item{
-    background-color: $lightGrey;
     display: flex;
     align-items: center;
     gap: 5px;
-
+  }
+  &__button{
+    background-color: $lightGrey;
+  }
+  &__triangle{
+    display: flex;
+    align-items: center;
   }
 }

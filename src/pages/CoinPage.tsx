@@ -10,6 +10,7 @@ import { IFlatTickers, INameValue } from '../models/crypto';
 import MarketItem from '../components/List/ListItems/MarketItem/MarketItem';
 import Convertor from '../components/Convertor/Convertor';
 import ListHeader from '../components/List/ListHeader/ListHeader';
+import { sortArr } from '../components/Utils/Utils';
 
 const CoinPage = () => {
     const [list, setList] = useState<INameValue[]>([]);
@@ -40,28 +41,6 @@ const CoinPage = () => {
     useEffect(() => {
         setMarket(sortArr(market, sort.column, sort.isDesc));
     }, [sort]);
-
-    const sortArr = (arr: any[], property: string, isDesc: boolean) => {
-        return [...arr].sort((a, b) => {
-            if (typeof a[property] === 'string') {
-                return (
-                    (a[property].toLowerCase() < b[property].toLowerCase()
-                        ? -1
-                        : a[property].toLowerCase() > b[property].toLowerCase()
-                        ? 1
-                        : 0) * (isDesc ? -1 : 1)
-                );
-            } else {
-                return (
-                    (a[property] < b[property]
-                        ? -1
-                        : a[property] > b[property]
-                        ? 1
-                        : 0) * (isDesc ? -1 : 1)
-                );
-            }
-        });
-    };
 
     const listHeaders = [
         { title: 'Market', sort: 'market', width: 100 },
@@ -129,12 +108,9 @@ const CoinPage = () => {
                             )}
                         />
                     </div>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: data.description.en,
-                        }}
-                        className={cls.coin_page__description}
-                    />
+                    <div className={cls.coin_page__description}>
+                        {data.description.en.replace(/<[^>]+>/g, '')}
+                    </div>
                     <div>
                         <nav className={cls.coin_page__list_container}>
                             <ul className={cls.coin_page__list}>
@@ -188,6 +164,7 @@ const CoinPage = () => {
                                     <ListHeader
                                         listHeaders={listHeaders}
                                         setSort={setSort}
+                                        sort={sort}
                                         key={listHeaders[0].sort}
                                     />
                                     <List
