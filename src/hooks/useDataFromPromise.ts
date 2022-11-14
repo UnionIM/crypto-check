@@ -12,6 +12,7 @@ export default function useDataFromPromise<T>(
 
     useEffect(
         () => {
+            setData({ data: null, isLoading: true });
             promise.apply(null, params).then((value) => {
                 setData({ data: value, isLoading: false });
             });

@@ -3,7 +3,7 @@ import cls from './List.module.scss';
 
 interface ListProps<T> {
     items: T[];
-    renderItem: (item: T) => React.ReactNode;
+    renderItem: (item: T, index?: number) => React.ReactNode;
     equalWidth?: boolean;
 }
 
