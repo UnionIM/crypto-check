@@ -168,7 +168,7 @@ const Chart = () => {
     };
 
     if (!data) {
-        return <div>No data</div>;
+        return <div className="App__no_data">No data</div>;
     }
 
     return (

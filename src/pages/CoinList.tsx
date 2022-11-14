@@ -55,7 +55,7 @@ const CoinList = () => {
     }, [sort]);
 
     if (!data) {
-        return <div>no data</div>;
+        return <div className="App__no_data">No data</div>;
     }
 
     return (

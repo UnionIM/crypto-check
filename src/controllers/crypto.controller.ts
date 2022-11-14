@@ -1,5 +1,10 @@
 import CryptoService from '../service/crypto.service';
-import { ICoinSingle, IExtendedCoin, ITickers } from '../models/crypto';
+import {
+    ICoinSingle,
+    IExtendedCoin,
+    IFlatTickers,
+    ITickers,
+} from '../models/crypto';
 import { pricePrettier } from '../components/Utils/Utils';
 
 export default class CryptoController {
@@ -146,7 +151,7 @@ export default class CryptoController {
         };
     }
 
-    static marketNormalizer(data: ITickers) {
+    static marketNormalizer(data: ITickers): IFlatTickers {
         return {
             coin_id: data.coin_id,
             converted_last: data.converted_last.usd,

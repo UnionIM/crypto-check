@@ -6,21 +6,14 @@ import cls from '../styles/pagesStyle/CoinPage.module.scss';
 import PriceChange from '../components/UI/PriceChange/PriceChange';
 import List from '../components/List/List';
 import NameValueItem from '../components/List/ListItems/NameValueItem/NameValueItem';
-import { IFlatTickers, INameValue } from '../models/crypto';
-import MarketItem from '../components/List/ListItems/MarketItem/MarketItem';
+import { INameValue } from '../models/crypto';
 import Convertor from '../components/Convertor/Convertor';
-import ListHeader from '../components/List/ListHeader/ListHeader';
-import { sortArr } from '../components/Utils/Utils';
 import Chart from '../components/Chart/Chart';
+import Markets from '../components/Markets/Markets';
 
 const CoinPage = () => {
     const [list, setList] = useState<INameValue[]>([]);
-    const [market, setMarket] = useState<IFlatTickers[]>([]);
     const { coinId, path } = useParams();
-    const [sort, setSort] = useState<{ column: string; isDesc: boolean }>({
-        column: 'market_cap',
-        isDesc: true,
-    });
 
     const { data, isLoading } = useDataFromPromise(
         CryptoController.getCoinById,
@@ -30,32 +23,13 @@ const CoinPage = () => {
 
     useEffect(() => {
         if (data) {
-            const temp: IFlatTickers[] = [];
             setList(CryptoController.coinNormalizer(data));
-            data.tickers.map((el) => {
-                temp.push(CryptoController.marketNormalizer(el));
-            });
-            setMarket(temp);
         }
     }, [data]);
 
-    useEffect(() => {
-        setMarket(sortArr(market, sort.column, sort.isDesc));
-    }, [sort]);
-
-    const listHeaders = [
-        { title: 'Market', sort: 'market', width: 100 },
-        { title: 'Target', sort: 'target', width: 55 },
-        { title: 'Trust score', sort: 'trust_score', width: 100 },
-        { title: 'Price', sort: 'converted_last', width: 80 },
-        { title: 'Date UTC0', sort: 'last_fetch_at', width: 126 },
-    ];
-
     if (!data) {
-        return <div>No data</div>;
+        return <div className="App__no_data">No data</div>;
     }
-    console.log(isLoading);
-    console.log(data);
 
     return (
         <div className={cls.coin_page}>
@@ -94,14 +68,14 @@ const CoinPage = () => {
                                         : 4
                                 }
                             />
+                            <PriceChange
+                                priceValue={
+                                    data.market_data.price_change_percentage_24h
+                                }
+                                specialSymbol={' %'}
+                                digits={2}
+                            />
                         </div>
-                        <PriceChange
-                            priceValue={
-                                data.market_data.price_change_percentage_24h
-                            }
-                            specialSymbol={' %'}
-                            digits={2}
-                        />
                     </div>
                     <div>
                         <List
@@ -164,25 +138,8 @@ const CoinPage = () => {
                                     <Chart />
                                 </div>
                             )}
-                            {path === 'markets' && (
-                                <div
-                                    className={cls.coin_page__market_container}
-                                >
-                                    <ListHeader
-                                        listHeaders={listHeaders}
-                                        setSort={setSort}
-                                        sort={sort}
-                                    />
-                                    <List
-                                        items={market}
-                                        renderItem={(market, index) => (
-                                            <MarketItem
-                                                key={index}
-                                                market={market}
-                                            />
-                                        )}
-                                    />
-                                </div>
+                            {path === 'markets' && data && (
+                                <Markets data={data} />
                             )}
                             {path === 'conversion' && (
                                 <Convertor

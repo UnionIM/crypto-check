@@ -2,6 +2,11 @@
 
 .App{
   font-family: Ubuntu, serif;
+  &__no_data{
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+  }
 }
 
 
