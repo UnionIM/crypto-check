@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import cls from './ListHeader.module.scss';
 import TriangleArrow from '../../UI/TriangleArrow/TriangleArrow';
 
@@ -25,7 +25,9 @@ const ListHeader: FC<ListHeaderProps> = ({ listHeaders, setSort, sort }) => {
         }
     };
 
-    console.log(click);
+    useEffect(() => {
+        setSort({ column: sort.column, isDesc: true });
+    }, [sort.column]);
 
     return (
         <div className={cls.list_headers}>
@@ -33,9 +35,9 @@ const ListHeader: FC<ListHeaderProps> = ({ listHeaders, setSort, sort }) => {
                 <div
                     className={cls.list_headers__item}
                     style={{ width: `${item.width}px` }}
+                    key={item.sort}
                 >
                     <button
-                        key={item.sort}
                         className={[cls.list_headers__button].join(' ')}
                         onClick={(e) => sortButtonHandler(e, item)}
                     >

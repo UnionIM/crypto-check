@@ -39,8 +39,8 @@ const Navbar = () => {
         }
     }, [debounce]);
 
-    const searchHandler = (value: string) => {
-        nav(`coin-list/${value}`);
+    const searchHandler = (value: ISearchedCoin[]) => {
+        nav(`/coins/${value[0].id}/overview`);
     };
 
     return (
@@ -81,7 +81,7 @@ const Navbar = () => {
                                 }}
                                 onKeyUp={(e) => {
                                     if (e.key === 'Enter') {
-                                        searchHandler(searchValue);
+                                        searchHandler(searchedCoins);
                                     }
                                 }}
                                 onClick={() => {
