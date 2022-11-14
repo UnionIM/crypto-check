@@ -110,3 +110,9 @@ export interface ISearchedCoin {
     symbol: string;
     thumb: string;
 }
+
+export interface IChartData {
+    prices: [number, number][];
+    market_caps: [number, number][];
+    total_volumes: [number, number][];
+}

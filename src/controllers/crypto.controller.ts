@@ -41,6 +41,19 @@ export default class CryptoController {
         }
     }
 
+    static async getChartData(
+        id: string,
+        vsCurrency: string,
+        from: number,
+        to: number
+    ) {
+        try {
+            return await CryptoService.getChartData(id, vsCurrency, from, to);
+        } catch (e) {
+            throw e;
+        }
+    }
+
     static coinNormalizer(data: ICoinSingle) {
         try {
             return [
