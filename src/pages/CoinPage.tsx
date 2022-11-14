@@ -11,6 +11,7 @@ import MarketItem from '../components/List/ListItems/MarketItem/MarketItem';
 import Convertor from '../components/Convertor/Convertor';
 import ListHeader from '../components/List/ListHeader/ListHeader';
 import { sortArr } from '../components/Utils/Utils';
+import Chart from '../components/Chart/Chart';
 
 const CoinPage = () => {
     const [list, setList] = useState<INameValue[]>([]);
@@ -53,6 +54,8 @@ const CoinPage = () => {
     if (!data) {
         return <div>No data</div>;
     }
+    console.log(isLoading);
+    console.log(data);
 
     return (
         <div className={cls.coin_page}>
@@ -156,7 +159,11 @@ const CoinPage = () => {
                             </ul>
                         </nav>
                         <div>
-                            {path === 'overview' && <div>Overview</div>}
+                            {path === 'overview' && (
+                                <div>
+                                    <Chart />
+                                </div>
+                            )}
                             {path === 'markets' && (
                                 <div
                                     className={cls.coin_page__market_container}
@@ -165,13 +172,12 @@ const CoinPage = () => {
                                         listHeaders={listHeaders}
                                         setSort={setSort}
                                         sort={sort}
-                                        key={listHeaders[0].sort}
                                     />
                                     <List
                                         items={market}
-                                        renderItem={(market) => (
+                                        renderItem={(market, index) => (
                                             <MarketItem
-                                                key={Math.random()}
+                                                key={index}
                                                 market={market}
                                             />
                                         )}

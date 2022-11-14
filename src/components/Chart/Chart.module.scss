@@ -1,0 +1,21 @@
+@import './src/styles/commonStyles/ColorVariables';
+@import './src/styles/commonStyles/Text';
+
+.chart{
+  &__button_list{
+    margin: 5px 0;
+    display: flex;
+    gap: 5px;
+  }
+  &__button{
+    border: 1px solid $lightGrey;
+    background: white;
+    padding: 3px 5px;
+  }
+  &__button_active{
+    border: 1px solid $lightGrey;
+    background: $grey;
+    padding: 3px 5px;
+    color: white;
+  }
+}
