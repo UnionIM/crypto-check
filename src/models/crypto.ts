@@ -116,3 +116,12 @@ export interface IChartData {
     market_caps: [number, number][];
     total_volumes: [number, number][];
 }
+
+export interface ICurrencyState {
+    currency: string;
+}
+
+export interface IUserAction {
+    type: string;
+    payload?: string;
+}
