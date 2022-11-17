@@ -11,6 +11,7 @@ import Pagination from '../components/Pagination/Pagination';
 import { sortArr } from '../components/Utils/Utils';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import Loader from '../components/UI/Loader/Loader';
 
 const CoinList = () => {
   const { page } = useParams();
@@ -59,17 +60,29 @@ const CoinList = () => {
   }, [data?.data, selectedCurrency]);
 
   useEffect(() => {
+    setCoins([]);
+  }, [page]);
+
+  useEffect(() => {
     setCoins(sortArr(coins, sort.column, sort.isDesc));
   }, [sort]);
 
-  if (!data) {
+  if (!data?.data.length) {
     return <div className="App__no_data">No data</div>;
+  }
+
+  if (!coins.length) {
+    return (
+      <div className={cls.coin_list}>
+        <Loader />
+      </div>
+    );
   }
 
   return (
     <div className={cls.coin_list}>
       {isLoading ? (
-        <div>Loading</div>
+        <Loader />
       ) : (
         <div className={cls.coin_list__container}>
           <div className={cls.coin_item}>
@@ -88,7 +101,7 @@ const CoinList = () => {
           {data?.headers.total ? (
             <Pagination total={parseInt(data?.headers.total)} perPage={50} />
           ) : (
-            <div>Loading</div>
+            <Loader />
           )}
         </div>
       )}

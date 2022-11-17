@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import cls from './Pagination.module.scss';
+import Loader from '../UI/Loader/Loader';
 
 interface PaginationProps {
   total: number;
@@ -35,7 +36,7 @@ const Pagination: FC<PaginationProps> = ({ total, perPage }) => {
           nextClassName={cls.item}
         />
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
     </div>
   );

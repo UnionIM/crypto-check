@@ -12,6 +12,7 @@ import Chart from '../components/Chart/Chart';
 import Markets from '../components/Markets/Markets';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import Loader from '../components/UI/Loader/Loader';
 
 const CoinPage = () => {
   const [list, setList] = useState<INameValue[]>([]);
@@ -39,7 +40,7 @@ const CoinPage = () => {
   return (
     <div className={cls.coin_page}>
       {isLoading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <div className={cls.coin_page__content}>
           <div className={cls.coin_page__identifier}>

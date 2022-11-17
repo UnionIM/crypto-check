@@ -5,6 +5,7 @@ import useDataFromPromise from '../hooks/useDataFromPromise';
 import List from '../components/List/List';
 import CoinItem from '../components/List/ListItems/CoinItem/CoinItem';
 import { ICoin } from '../models/crypto';
+import Loader from '../components/UI/Loader/Loader';
 
 const Home = () => {
   const [lowestCryptoList, setLowestCryptoList] = useState<ICoin[]>([]);
@@ -33,7 +34,7 @@ const Home = () => {
         </div>
         <div className="home__content">
           {isLoading ? (
-            <div>Loading...</div>
+            <Loader />
           ) : (
             <div>
               <h1 className="home__list_header">Best and worst crypto</h1>
