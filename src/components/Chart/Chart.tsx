@@ -68,9 +68,11 @@ const Chart = () => {
     }
   };
 
+  console.log(data?.[selectedChart as keyof IChartData][1]);
+
   const zoomOptions = {
     limits: {
-      x: { min: 0, max: 200, minRange: 50 },
+      x: { min: 0, max: Date.now(), minRange: 1 },
       y: {
         min: data
           ? zoomMinMax(
@@ -84,7 +86,9 @@ const Chart = () => {
               data?.[selectedChart as keyof IChartData].map((el) => el[1])
             )
           : 100000,
-        minRange: data?.[selectedChart as keyof IChartData][1],
+        minRange: data
+          ? data?.[selectedChart as keyof IChartData][1][1] / 100
+          : 1,
       },
     },
     pan: {
