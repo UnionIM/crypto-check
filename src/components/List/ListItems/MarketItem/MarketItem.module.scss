@@ -1,6 +1,6 @@
-@import "src/styles/commonStyles/ColorVariables";
+@import 'src/styles/commonStyles/ColorVariables';
 
-.market_item{
+.market_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,28 +9,28 @@
   border-top: 1px solid $grey;
 
   height: 50px;
-  &__header{
+  &__header {
     background-color: $lightGrey;
   }
-  &__name{
+  &__name {
     display: inline-block;
     width: 100px;
   }
-  &__trust_score{
+  &__trust_score {
     padding: 2px 5px;
     border-radius: 5px;
     width: 82px;
     text-align: center;
   }
-  &__target{
+  &__target {
     width: 55px;
     text-align: center;
   }
-  &__price{
+  &__price {
     width: 100px;
     text-align: center;
   }
-  &__date{
+  &__date {
     width: 130px;
     text-align: right;
   }

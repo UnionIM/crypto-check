@@ -1,0 +1,24 @@
+@import '/src/styles/commonStyles/ColorVariables';
+@import '/src/styles/commonStyles/Text';
+
+.dropdown {
+  position: relative;
+  &__selected_currency {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 3px 5px;
+    background-color: white;
+    border: 1px solid $grey;
+    height: 100%;
+  }
+  &__content {
+    display: grid;
+    column-gap: 10px;
+    background-color: white;
+    padding: 10px 15px;
+    border: 1px solid $grey;
+    border-radius: 10px;
+    position: absolute;
+  }
+}

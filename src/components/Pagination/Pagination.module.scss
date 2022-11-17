@@ -1,23 +1,23 @@
-@import "./src/styles/commonStyles/ColorVariables";
+@import './src/styles/commonStyles/ColorVariables';
 
-.pagination{
+.pagination {
   display: flex;
   align-items: center;
   gap: 3px;
-  &__container{
+  &__container {
     display: flex;
     justify-content: center;
     margin: 20px 0 0;
     padding: 0 0 50px;
   }
 }
-.active{
+.active {
   padding: 3px 5px;
   border: 1px solid $black;
   background: $lightGrey;
   cursor: pointer;
 }
-.item{
+.item {
   padding: 3px 5px;
   border: 1px solid $black;
   background: white;

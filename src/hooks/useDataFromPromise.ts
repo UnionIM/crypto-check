@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 
 export default function useDataFromPromise<T>(
-    promise: (...args: any) => Promise<T>,
-    params: any[],
-    deps?: any[]
+  promise: (...args: any) => Promise<T>,
+  params: any[],
+  deps?: any[]
 ) {
-    const [data, setData] = useState<{ data: null | T; isLoading: boolean }>({
-        data: null,
-        isLoading: true,
-    });
+  const [data, setData] = useState<{ data: null | T; isLoading: boolean }>({
+    data: null,
+    isLoading: true,
+  });
 
-    useEffect(
-        () => {
-            setData({ data: null, isLoading: true });
-            promise.apply(null, params).then((value) => {
-                setData({ data: value, isLoading: false });
-            });
-        },
-        deps ? [...deps] : []
-    );
+  useEffect(
+    () => {
+      setData({ data: null, isLoading: true });
+      promise.apply(null, params).then((value) => {
+        setData({ data: value, isLoading: false });
+      });
+    },
+    deps ? [...deps] : []
+  );
 
-    return data;
+  return data;
 }

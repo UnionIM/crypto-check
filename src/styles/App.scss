@@ -1,14 +1,13 @@
-@import "commonStyles/ColorVariables";
+@import 'commonStyles/ColorVariables';
 
-.App{
+.App {
   font-family: Ubuntu, serif;
-  &__no_data{
+  &__no_data {
     font-weight: 700;
     font-size: 20px;
     text-align: center;
   }
 }
-
 
 /* width */
 ::-webkit-scrollbar {

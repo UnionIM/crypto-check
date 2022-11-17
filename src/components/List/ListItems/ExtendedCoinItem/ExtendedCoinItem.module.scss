@@ -1,47 +1,46 @@
-@import "./src/styles/commonStyles/ColorVariables";
-@import "./src/styles/commonStyles/Text";
+@import './src/styles/commonStyles/ColorVariables';
+@import './src/styles/commonStyles/Text';
 
-
-.coin_item{
+.coin_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid $grey;
 
   padding: 5px 10px;
-  &__name_info{
+  &__name_info {
     display: flex;
     align-items: center;
     gap: 3px;
     width: 200px;
   }
-  &__name{
+  &__name {
     color: black;
   }
-  &__price{
+  &__price {
     width: 80px;
   }
-  &__price_percentage_24h{
+  &__price_percentage_24h {
     width: 80px;
   }
-  &__market_cap{
+  &__market_cap {
     width: 110px;
   }
-  &__max_market_cap{
+  &__max_market_cap {
     width: 130px;
   }
-  &__part_of_market_cap{
+  &__part_of_market_cap {
     width: 50px;
     text-align: right;
   }
-  &__percentage{
+  &__percentage {
     width: 80px;
   }
 }
 
-@media (max-width: 1000px){
-  .coin_item{
-    &__name_info{
+@media (max-width: 1000px) {
+  .coin_item {
+    &__name_info {
       display: block;
       width: 100px;
     }

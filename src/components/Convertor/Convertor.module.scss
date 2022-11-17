@@ -1,31 +1,31 @@
-@import "/src/styles/commonStyles/ColorVariables";
-@import "/src/styles/commonStyles/Text";
+@import '/src/styles/commonStyles/ColorVariables';
+@import '/src/styles/commonStyles/Text';
 
-.convertor{
+.convertor {
   padding: 30px 20px;
   border: 1px solid $grey;
   text-align: center;
-  & h1{
+  & h1 {
     margin-bottom: 20px;
   }
-  &__wrapper{
+  &__wrapper {
     display: flex;
     justify-content: space-between;
   }
-  &__input{
+  &__input {
     padding: 5px;
     border: 1px solid $grey;
     border-radius: 5px;
     width: 45%;
   }
-  &__output{
+  &__output {
     text-align: left;
     padding: 5px;
     border: 1px solid $grey;
     border-radius: 5px;
     width: 45%;
   }
-  &__replace{
+  &__replace {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,41 +35,17 @@
 
     background-color: white;
     border: 1px solid $grey;
-    & img{
+    & img {
       width: 20px;
       height: 20px;
     }
   }
-  &__dropdown{
-    position: relative;
-
-  }
-  &__dropdown_content{
-    display: grid;
-    grid-template: 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
-    background-color: white;
-    padding: 10px 15px;
-    border: 1px solid $grey;
-    border-radius: 10px;
-    position: absolute;
-    transform: translate(-160px, 13px);
-  }
-  &__dropdown_item{
+  &__dropdown_item {
     margin-top: 5px;
   }
-  &__button{
+  &__button {
     padding: 3px 5px;
     background-color: white;
     border: 1px solid $grey;
-  }
-  &__selected_currency{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    padding: 3px 5px;
-    background-color: white;
-    border: 1px solid $grey;
-    height: 100%;
   }
 }

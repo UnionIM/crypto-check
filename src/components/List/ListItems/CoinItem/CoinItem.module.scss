@@ -1,7 +1,7 @@
-@import "/src/styles/commonStyles/ColorVariables";
-@import "/src/styles/commonStyles/Text";
+@import '/src/styles/commonStyles/ColorVariables';
+@import '/src/styles/commonStyles/Text';
 
-.coin_item{
+.coin_item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,17 +10,17 @@
   border-top: 1px solid $grey;
 
   height: 50px;
-  &__image{
+  &__image {
     max-width: 25px;
     max-height: 25px;
   }
-  &__name{
+  &__name {
     max-width: 100px;
     margin: 0 0 0 3px;
     text-align: center;
   }
 
-  &__price{
+  &__price {
     display: flex;
   }
 }

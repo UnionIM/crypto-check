@@ -1,14 +1,11 @@
-@import "/src/styles/commonStyles/ColorVariables";
-@import "/src/styles/commonStyles/Text";
+@import '/src/styles/commonStyles/ColorVariables';
+@import '/src/styles/commonStyles/Text';
 
-.item{
+.item {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 10px 7px;
   border-top: 1px solid $grey;
-
-
-
 }

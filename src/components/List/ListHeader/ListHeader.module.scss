@@ -1,27 +1,27 @@
-@import "./src/styles/commonStyles/ColorVariables";
-@import "./src/styles/commonStyles/Text";
+@import './src/styles/commonStyles/ColorVariables';
+@import './src/styles/commonStyles/Text';
 
-.list_headers{
+.list_headers {
   display: flex;
   justify-content: space-between;
   background-color: $lightGrey;
   padding: 5px 10px;
   text-align: center;
-  & button:first-child{
+  & button:first-child {
     text-align: left;
   }
-  & button:last-child{
+  & button:last-child {
     text-align: right;
   }
-  &__item{
+  &__item {
     display: flex;
     align-items: center;
     gap: 5px;
   }
-  &__button{
+  &__button {
     background-color: $lightGrey;
   }
-  &__triangle{
+  &__triangle {
     display: flex;
     align-items: center;
   }
