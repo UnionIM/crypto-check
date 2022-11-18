@@ -18,7 +18,7 @@ export const getChartOptions = (
 
   const zoomOptions = {
     limits: {
-      x: { min: 0, max: Date.now(), minRange: 1 },
+      x: { min: 0, max: 1000, minRange: 1 },
       y: {
         min: data
           ? zoomMinMax(
@@ -60,7 +60,7 @@ export const getChartOptions = (
     },
     elements: {
       point: {
-        radius: 1,
+        radius: 0,
       },
     },
     plugins: {
@@ -88,17 +88,22 @@ export const getChartOptions = (
       xAxes: {
         ticks: {
           callback: function (index: number) {
-            return data?.[selectedChart as keyof IChartData].map((el) =>
-              selectedTime > time
-                ? new Date(el[0]).toLocaleDateString()
-                : new Date(el[0]).toLocaleTimeString()
-            )[index];
+            if (selectedTime > time) {
+              return new Date(
+                data?.[selectedChart as keyof IChartData][index][0]
+              ).toLocaleDateString();
+            } else {
+              return new Date(
+                data?.[selectedChart as keyof IChartData][index][0]
+              ).toLocaleTimeString();
+            }
           },
         },
         scaleLabel: {
-          display: true,
+          display: false,
           labelString: 'value',
         },
+        showXLabels: 2,
       },
     },
   };
