@@ -24,16 +24,30 @@ const ExtendedCoinItem: FC<ExtendedCoinItemProps> = ({ coin }) => {
       </Link>
       <div className={cls.coin_item__price}>{coin.price || 'N/A'}</div>
       <PriceChange priceValue={coin.price24h} digits={2} specialSymbol={' %'} />
-      <PriceChange priceValue={coin.price7d} digits={2} specialSymbol={' %'} />
-      <PriceChange priceValue={coin.price30d} digits={2} specialSymbol={' %'} />
+      <div className={cls.coin_item__price_change}>
+        <PriceChange
+          priceValue={coin.price7d}
+          digits={2}
+          specialSymbol={' %'}
+        />
+      </div>
+      <div className={cls.coin_item__price_change}>
+        <PriceChange
+          priceValue={coin.price30d}
+          digits={2}
+          specialSymbol={' %'}
+        />
+      </div>
       <div className={cls.coin_item__market_cap}>
         {coin.market_cap ? pricePrettier(coin.market_cap) : 'N/A'}
       </div>
-      <PriceChange
-        priceValue={coin.market_cap_24h}
-        digits={2}
-        specialSymbol={' %'}
-      />
+      <div className={cls.coin_item__24_market_cap}>
+        <PriceChange
+          priceValue={coin.market_cap_24h}
+          digits={2}
+          specialSymbol={' %'}
+        />
+      </div>
       <div className={cls.coin_item__max_market_cap}>
         {coin.fdv === -1 ? 'N/A' : pricePrettier(coin.fdv)}
       </div>

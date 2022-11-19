@@ -37,11 +37,21 @@ const Markets: FC<MarketsProps> = ({ data }) => {
   }, [sort]);
 
   const listHeaders = [
-    { title: 'Market', sort: 'market', width: 100 },
-    { title: 'Target', sort: 'target', width: 55 },
-    { title: 'Trust score', sort: 'trust_score', width: 100 },
-    { title: 'Price', sort: 'converted_last', width: 80 },
-    { title: 'Date UTC0', sort: 'last_fetch_at', width: 126 },
+    { title: 'Market', sort: 'market', width: 100, disappearWidth: 0 },
+    { title: 'Target', sort: 'target', width: 55, disappearWidth: 0 },
+    {
+      title: 'Trust score',
+      sort: 'trust_score',
+      width: 100,
+      disappearWidth: 0,
+    },
+    { title: 'Price', sort: 'converted_last', width: 80, disappearWidth: 0 },
+    {
+      title: 'Date UTC0',
+      sort: 'last_fetch_at',
+      width: 126,
+      disappearWidth: 0,
+    },
   ];
 
   if (!data.tickers.length) {

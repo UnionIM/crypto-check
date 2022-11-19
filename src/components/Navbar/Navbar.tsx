@@ -104,7 +104,80 @@ const Navbar = () => {
           />
         </div>
         <div className="navbar__search_bar" ref={ref}>
-          {isSearchClicked ? (
+          <div
+            onClick={() => {
+              setIsSearchClicked(true);
+            }}
+            className="navbar__magnifier_button"
+            style={isSearchClicked ? { display: 'none' } : { display: 'block' }}
+          >
+            <img className="navbar__magnifier" src={magnifier} alt="" />
+          </div>
+          <div className="navbar__input">
+            <div
+              className="search_bar"
+              style={
+                isSearchClicked ? { display: 'flex' } : { display: 'none' }
+              }
+            >
+              <input
+                className="search_bar__input"
+                placeholder="Search currency..."
+                value={searchValue}
+                onChange={(e) => {
+                  setSearchValue(e.target.value.toLowerCase());
+                }}
+                onKeyUp={(e) => {
+                  if (e.key === 'Enter') {
+                    searchHandler(searchedCoins);
+                  }
+                }}
+                onClick={() => {
+                  setIsListShowing(true);
+                }}
+                autoFocus={true}
+              />
+              <div
+                onClick={() => {
+                  setIsSearchClicked(false);
+                }}
+                className="search_bar__close"
+              >
+                <div className="search_bar__line search_bar__line1" />
+                <div className="search_bar__line search_bar__line2" />
+              </div>
+            </div>
+            <div
+              className="navbar__searched_container"
+              style={
+                searchValue &&
+                isListShowing &&
+                isSearchClicked &&
+                searchedCoins.length > 0
+                  ? { display: 'block' }
+                  : { display: 'none' }
+              }
+            >
+              <div className="navbar__searched_list">
+                <List
+                  items={searchedCoins.filter((coin) => {
+                    return coin.name.toLowerCase().startsWith(searchValue);
+                  })}
+                  renderItem={(item) => (
+                    <Link
+                      className="navbar__coin_item"
+                      to={`coins/${item.id}/overview`}
+                      key={item.id}
+                    >
+                      <LightItem coin={item} />
+                    </Link>
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/*{isSearchClicked ? (
             <div className="search_bar">
               <input
                 className="search_bar__input"
@@ -141,35 +214,7 @@ const Navbar = () => {
             >
               <img className="navbar__magnifier" src={magnifier} alt="" />
             </div>
-          )}
-          <div
-            className="navbar__searched_container"
-            style={
-              searchValue &&
-              isListShowing &&
-              isSearchClicked &&
-              searchedCoins.length > 0
-                ? { opacity: 1 }
-                : { opacity: 0 }
-            }
-          >
-            <div className="navbar__searched_list">
-              <List
-                items={searchedCoins.filter((coin) => {
-                  return coin.name.toLowerCase().startsWith(searchValue);
-                })}
-                renderItem={(item) => (
-                  <Link
-                    className="navbar__coin_item"
-                    to={`coins/${item.id}/overview`}
-                    key={item.id}
-                  >
-                    <LightItem coin={item} />
-                  </Link>
-                )}
-              />
-            </div>
-          </div>
+          )}*/}
         </div>
       </div>
     </nav>

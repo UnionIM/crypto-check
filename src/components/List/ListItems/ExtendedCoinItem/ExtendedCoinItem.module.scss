@@ -44,5 +44,43 @@
       display: block;
       width: 100px;
     }
+    &__price_change{
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 740px){
+  .coin_item{
+    &__24_market_cap {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 640px){
+  .coin_item{
+    &__max_market_cap {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .coin_item {
+    &__name_info{
+      width: 50px;
+    }
+    &__name {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .coin_item {
+    &__part_of_market_cap{
+      display: none;
+    }
   }
 }
