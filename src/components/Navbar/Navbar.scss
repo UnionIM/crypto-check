@@ -30,6 +30,11 @@
     height: 40px;
   }
 
+  &__search_bar{
+    position: absolute;
+    right: 10px;
+  }
+
   &__list {
     margin-left: 7%;
     display: flex;
@@ -47,10 +52,6 @@
     }
   }
 
-  &__magnifier_button{
-    width: 185px;
-    text-align: right;
-  }
   &__magnifier {
     user-select: none;
     width: 25px;
@@ -76,6 +77,9 @@
   }
   &__coin_item {
     margin-bottom: 10px;
+  }
+  &__dropdown{
+    margin-right: 210px;
   }
 }
 
@@ -126,10 +130,6 @@
     &__input{
       position: relative;
       top: 55px
-    }
-    &__search_bar{
-      position: absolute;
-      right: 10px;
     }
     &__dropdown{
       margin-right: 50px;

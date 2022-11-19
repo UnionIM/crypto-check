@@ -96,9 +96,14 @@ export default class CryptoController {
         {
           name: 'Market cap change 24h',
           value:
-            data.market_data.market_cap_change_24h &&
-            data.market_data.market_cap_change_percentage_24h
-              ? pricePrettier(data.market_data.market_cap_change_24h) +
+            data.market_data.market_cap_change_24h_in_currency[
+              selectedCurrency as keyof IPrice
+            ] && data.market_data.market_cap_change_percentage_24h
+              ? pricePrettier(
+                  data.market_data.market_cap_change_24h_in_currency[
+                    selectedCurrency as keyof IPrice
+                  ]
+                ) +
                 ' / ' +
                 data.market_data.market_cap_change_percentage_24h +
                 '%'

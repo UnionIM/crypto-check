@@ -103,13 +103,14 @@ const Navbar = () => {
             }
           />
         </div>
-        <div className="navbar__search_bar" ref={ref}>
+        <div className="navbar__search_bar">
           <div
             onClick={() => {
               setIsSearchClicked(true);
             }}
             className="navbar__magnifier_button"
             style={isSearchClicked ? { display: 'none' } : { display: 'block' }}
+            ref={ref}
           >
             <img className="navbar__magnifier" src={magnifier} alt="" />
           </div>

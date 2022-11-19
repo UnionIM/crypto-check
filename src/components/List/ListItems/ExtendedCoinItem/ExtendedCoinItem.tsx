@@ -10,6 +10,7 @@ interface ExtendedCoinItemProps {
 }
 
 const ExtendedCoinItem: FC<ExtendedCoinItemProps> = ({ coin }) => {
+  console.log(coin);
   return (
     <div className={cls.coin_item}>
       <Link
@@ -49,7 +50,10 @@ const ExtendedCoinItem: FC<ExtendedCoinItemProps> = ({ coin }) => {
         />
       </div>
       <div className={cls.coin_item__max_market_cap}>
-        {coin.fdv === -1 ? 'N/A' : pricePrettier(coin.fdv)}
+        {
+          //@ts-ignore
+          coin.fdv === -1 ? 'N/A' : pricePrettier(coin.fdv.toFixed(2))
+        }
       </div>
       <div className={cls.coin_item__part_of_market_cap}>
         {coin.mc_fdv === -1 ? 'N/A' : pricePrettier(coin.mc_fdv)}

@@ -55,7 +55,7 @@ export interface ICoinMarketData {
   price_change_percentage_24h: number;
   price_change_percentage_7d: number;
   price_change_percentage_30d: number;
-  market_cap_change_24h: number;
+  market_cap_change_24h_in_currency: IPrice;
   market_cap_change_percentage_24h: number;
   circulating_supply: number;
   max_supply: number;

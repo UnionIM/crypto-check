@@ -37,6 +37,8 @@ const CoinPage = () => {
     return <div className="App__no_data">No data</div>;
   }
 
+  console.log(data);
+
   return (
     <div className={cls.coin_page}>
       {isLoading ? (
