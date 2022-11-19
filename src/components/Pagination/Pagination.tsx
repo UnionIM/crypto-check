@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import cls from './Pagination.module.scss';
 import Loader from '../UI/Loader/Loader';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 interface PaginationProps {
   total: number;
@@ -13,6 +14,8 @@ const Pagination: FC<PaginationProps> = ({ total, perPage }) => {
   const totalPages = Math.ceil(total / perPage);
   const { page } = useParams();
   const nav = useNavigate();
+
+  const { width } = useWindowDimensions();
 
   const handlePageClick = (e: { selected: number }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -28,7 +31,7 @@ const Pagination: FC<PaginationProps> = ({ total, perPage }) => {
           containerClassName={cls.pagination}
           activeClassName={cls.active}
           pageLinkClassName={cls.item}
-          pageRangeDisplayed={8}
+          pageRangeDisplayed={width < 500 ? 3 : 8}
           initialPage={parseInt(page) - 1}
           nextLabel=">"
           previousLabel="<"
