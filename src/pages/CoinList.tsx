@@ -65,9 +65,7 @@ const CoinList = () => {
     if (data?.data) {
       const temp: ICoinList[] = [];
       data.data.map((el) => {
-        temp.push(
-          CryptoController.extendedCoinNormalizer(el, selectedCurrency)
-        );
+        temp.push(CryptoController.extendedCoinNormalizer(el));
       });
       setCoins(temp);
     }
