@@ -1,16 +1,15 @@
 import React, { FC } from 'react';
 import cls from './ExtendedCoinItem.module.scss';
-import { IFlatExtendedCoin } from '../../../../models/crypto';
+import { ICoinList } from '../../../../models/crypto';
 import PriceChange from '../../../UI/PriceChange/PriceChange';
 import { pricePrettier } from '../../../Utils/Utils';
 import { Link } from 'react-router-dom';
 
 interface ExtendedCoinItemProps {
-  coin: IFlatExtendedCoin;
+  coin: ICoinList;
 }
 
 const ExtendedCoinItem: FC<ExtendedCoinItemProps> = ({ coin }) => {
-  console.log(coin);
   return (
     <div className={cls.coin_item}>
       <Link

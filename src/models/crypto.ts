@@ -15,29 +15,6 @@ export interface ICoin {
   description: ICoinDescription;
 }
 
-export interface IExtendedCoin {
-  id: string;
-  name: string;
-  image: ICoinImage;
-  symbol: string;
-  market_data: ICoinMarketData;
-}
-
-export interface IFlatExtendedCoin {
-  id: string;
-  name: string;
-  symbol: string;
-  image: string;
-  price: number;
-  price24h: number;
-  price7d: number;
-  price30d: number;
-  market_cap: number;
-  market_cap_24h: number;
-  fdv: number;
-  mc_fdv: number;
-}
-
 export interface ICoinImage {
   large: string;
   small: string;
@@ -124,4 +101,33 @@ export interface ICurrencyState {
 export interface IUserAction {
   type: string;
   payload?: string;
+}
+
+export interface ICoinList {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  price: number;
+  price24h: number;
+  price7d: number;
+  price30d: number;
+  market_cap: number;
+  market_cap_24h: number;
+  fdv: number;
+  mc_fdv: number;
+}
+
+export interface IExtendedCoin {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+  market_cap: number;
+  market_cap_change_percentage_24h: number;
+  total_supply: number;
+  price_change_percentage_30d_in_currency: number;
+  price_change_percentage_7d_in_currency: number;
 }

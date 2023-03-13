@@ -5,7 +5,7 @@ import CryptoController from '../controllers/crypto.controller';
 import { useParams } from 'react-router-dom';
 import List from '../components/List/List';
 import ExtendedCoinItem from '../components/List/ListItems/ExtendedCoinItem/ExtendedCoinItem';
-import { IFlatExtendedCoin } from '../models/crypto';
+import { ICoinList } from '../models/crypto';
 import ListHeader from '../components/List/ListHeader/ListHeader';
 import Pagination from '../components/Pagination/Pagination';
 import { sortArr } from '../components/Utils/Utils';
@@ -16,7 +16,7 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 
 const CoinList = () => {
   const { page } = useParams();
-  const [coins, setCoins] = useState<IFlatExtendedCoin[]>([]);
+  const [coins, setCoins] = useState<ICoinList[]>([]);
   const [sort, setSort] = useState<{ column: string; isDesc: boolean }>({
     column: 'market_cap',
     isDesc: true,
@@ -57,13 +57,13 @@ const CoinList = () => {
 
   const { data, isLoading } = useDataFromPromise(
     CryptoController.getAllCrypto,
-    [page],
-    [page]
+    [page, selectedCurrency],
+    [page, selectedCurrency]
   );
 
   useEffect(() => {
     if (data?.data) {
-      const temp: IFlatExtendedCoin[] = [];
+      const temp: ICoinList[] = [];
       data.data.map((el) => {
         temp.push(
           CryptoController.extendedCoinNormalizer(el, selectedCurrency)
@@ -86,34 +86,30 @@ const CoinList = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div>
-          {data?.data.length ? (
-            <div className={cls.coin_list__container}>
-              <div className={cls.coin_item}>
-                <ListHeader
-                  listHeaders={listHeaders}
-                  setSort={setSort}
-                  sort={sort}
+        <div className={cls.coin_list__container}>
+          <div>
+            {data?.data.length ? (
+              <div>
+                <div className={cls.coin_item}>
+                  <ListHeader
+                    listHeaders={listHeaders}
+                    setSort={setSort}
+                    sort={sort}
+                  />
+                </div>
+                <List
+                  items={coins}
+                  renderItem={(item) => (
+                    <ExtendedCoinItem coin={item} key={item.id} />
+                  )}
                 />
+                {/*Because Coin Gecko api doesn't support "TOTAL" header, a static number was passed to the props*/}
+                <Pagination total={8200} perPage={50} />
               </div>
-              <List
-                items={coins}
-                renderItem={(item) => (
-                  <ExtendedCoinItem coin={item} key={item.id} />
-                )}
-              />
-              {data?.headers.total ? (
-                <Pagination
-                  total={parseInt(data?.headers.total)}
-                  perPage={50}
-                />
-              ) : (
-                <Loader />
-              )}
-            </div>
-          ) : (
-            <div className="App__no_data">No data</div>
-          )}
+            ) : (
+              <div className="App__no_data">No data</div>
+            )}
+          </div>
         </div>
       )}
     </div>

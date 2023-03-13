@@ -1,9 +1,9 @@
 import api from '../API/api';
 import {
+  IExtendedCoin,
   IChartData,
   ICoin,
   ICoinSingle,
-  IExtendedCoin,
   ISearch,
 } from '../models/crypto';
 
@@ -12,8 +12,13 @@ export default class CryptoService {
     return (await api.get<ICoinSingle>(`/coins/${id}`)).data;
   }
 
-  static async getAllCrypto(page: string = '1') {
-    return await api.get<IExtendedCoin[]>(`/coins?page=${page}`);
+  static async getAllCrypto(
+    page: string = '1',
+    selectedCurrency: string = 'usd'
+  ) {
+    return await api.get<IExtendedCoin[]>(
+      `/coins/markets?vs_currency=${selectedCurrency}&page=${page}&per_page=50&price_change_percentage=7d%2C30d`
+    );
   }
 
   static async searchForCrypto(searchValue: string) {

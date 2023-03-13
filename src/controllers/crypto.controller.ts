@@ -17,9 +17,9 @@ export default class CryptoController {
     }
   }
 
-  static async getAllCrypto(page: string) {
+  static async getAllCrypto(page: string, selectedCurrency: string) {
     try {
-      return await CryptoService.getAllCrypto(page);
+      return await CryptoService.getAllCrypto(page, selectedCurrency);
     } catch (e) {
       throw e;
     }
@@ -127,30 +127,25 @@ export default class CryptoController {
     }
   }
 
-  static extendedCoinNormalizer(data: IExtendedCoin, selectedCurrency: string) {
+  static extendedCoinNormalizer(data: IExtendedCoin) {
     return {
       id: data.id,
       name: data.name,
       symbol: data.symbol,
-      image: data.image.thumb,
-      price: data.market_data.current_price[selectedCurrency as keyof IPrice],
-      price24h: data.market_data.price_change_percentage_24h,
-      price7d: data.market_data.price_change_percentage_7d,
-      price30d: data.market_data.price_change_percentage_30d,
-      market_cap: data.market_data.market_cap[selectedCurrency as keyof IPrice],
-      market_cap_24h: data.market_data.market_cap_change_percentage_24h,
+      image: data.image,
+      price: data.current_price,
+      price24h: data.price_change_percentage_24h,
+      price7d: data.price_change_percentage_7d_in_currency,
+      price30d: data.price_change_percentage_30d_in_currency,
+      market_cap: data.market_cap,
+      market_cap_24h: data.market_cap_change_percentage_24h,
       fdv:
-        parseFloat(data.market_data.total_supply) &&
-        data.market_data.current_price[selectedCurrency as keyof IPrice]
-          ? parseFloat(data.market_data.total_supply) *
-            data.market_data.current_price[selectedCurrency as keyof IPrice]
+        data.total_supply && data.current_price
+          ? data.total_supply * data.current_price
           : -1,
       mc_fdv:
-        data.market_data.market_cap[selectedCurrency as keyof IPrice] &&
-        parseFloat(data.market_data.total_supply)
-          ? data.market_data.market_cap[selectedCurrency as keyof IPrice] /
-            (parseFloat(data.market_data.total_supply) *
-              data.market_data.current_price[selectedCurrency as keyof IPrice])
+        data.market_cap && data.total_supply
+          ? data.market_cap / (data.total_supply * data.current_price)
           : -1,
     };
   }
