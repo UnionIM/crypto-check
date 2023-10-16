@@ -13,6 +13,7 @@ import Markets from '../components/Markets/Markets';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import Loader from '../components/UI/Loader/Loader';
+import { pricePrettier } from '../components/Utils/Utils';
 
 const CoinPage = () => {
   const [list, setList] = useState<INameValue[]>([]);
@@ -37,8 +38,6 @@ const CoinPage = () => {
     return <div className="App__no_data">No data</div>;
   }
 
-  console.log(data);
-
   return (
     <div className={cls.coin_page}>
       {isLoading ? (
@@ -59,11 +58,11 @@ const CoinPage = () => {
           <div className={cls.coin_page__price_details}>
             <div className={cls.coin_page__price_info}>
               <span>
-                {
+                {pricePrettier(
                   data.market_data.current_price[
                     selectedCurrency as keyof IPrice
                   ]
-                }
+                )}
                 {` ${selectedCurrency.toUpperCase()} `}
               </span>
               <PriceChange

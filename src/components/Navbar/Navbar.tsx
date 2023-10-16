@@ -51,7 +51,7 @@ const Navbar = () => {
     nav(`/coins/${value[0].id}/overview`);
   };
 
-  const currencies = ['usd', 'eur', 'btc'];
+  const currencies = ['usd', 'eur', 'btc', 'uah'];
 
   return (
     <nav className="navbar">
